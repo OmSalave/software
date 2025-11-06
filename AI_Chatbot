@@ -1,0 +1,64 @@
+def get_response(user_input):
+    """
+    Analyzes the user's input and returns a pre-defined response.
+    """
+    # Normalize the input to lowercase for easier matching
+    lowered_input = user_input.lower()
+
+    # --- Keyword-Based Rules ---
+    
+    # Greeting
+    if "hello" in lowered_input or "hi" in lowered_input or "hey" in lowered_input:
+        return "Hello there! Welcome to The Cozy Corner Bookstore. How can I help you?"
+
+    # Hours of Operation
+    elif "hours" in lowered_input or "open" in lowered_input or "time" in lowered_input:
+        return "We are open from 9:00 AM to 7:00 PM, Monday to Saturday, and 12:00 PM to 6:00 PM on Sundays."
+
+    # Location
+    elif "location" in lowered_input or "address" in lowered_input or "where" in lowered_input:
+        return "You can find us at 123 Bookworm Lane, right next to the town square."
+
+    # Contact / Phone
+    elif "contact" in lowered_input or "phone" in lowered_input or "call" in lowered_input:
+        return "You can call us at (555) 123-4567 or email us at help@cozycorner.com."
+
+    # Types of books
+    elif "books" in lowered_input or "sell" in lowered_input or "genre" in lowered_input:
+        return "We have a wide selection of fiction, non-fiction, mystery, sci-fi, and children's books!"
+
+    # Goodbye
+    elif "bye" in lowered_input or "quit" in lowered_input or "exit" in lowered_input:
+        return "bye"  # Special signal to exit the loop
+
+    # Fallback response (if no keywords match)
+    else:
+        return "I'm sorry, I don't understand that. You can ask me about our hours, location, or contact info."
+
+def chatbot():
+    """
+    The main function to run the chatbot loop.
+    """
+    print("--- The Cozy Corner Bookstore Bot ---")
+    print("Bot: Hello! I can help with questions about our hours, location, and more.")
+    print("     (Type 'bye' or 'quit' to exit)")
+    print("-" * 37)
+
+    while True:
+        # Get input from the user
+        user_input = input("You: ")
+        
+        # Get the bot's response
+        response = get_response(user_input)
+        
+        # Check if the user wants to quit
+        if response == "bye":
+            print("Bot: Goodbye! We hope to see you soon.")
+            break
+        else:
+            # Print the bot's response
+            print(f"Bot: {response}")
+
+# --- Run the Chatbot ---
+if __name__ == "__main__":
+    chatbot()

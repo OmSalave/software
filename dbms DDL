@@ -1,0 +1,66 @@
+CREATE DATABASE college_db;
+USE college_db;
+
+CREATE TABLE Student (
+    Student_ID INT PRIMARY KEY COMMENT 'Unique student ID',
+    Name VARCHAR(50) NOT NULL,
+    Department VARCHAR(30),
+    Age INT CHECK (Age >= 17),
+    Email VARCHAR(50) UNIQUE
+);
+
+ALTER TABLE Student ADD COLUMN Phone VARCHAR(15);
+
+CREATE TABLE Course (
+    Course_ID INT PRIMARY KEY,
+    Course_Name VARCHAR(50),
+    Credits INT
+);
+
+CREATE TABLE Enrollment (
+    Enroll_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Student_ID INT,
+    Course_ID INT,
+    Grade CHAR(2)
+);
+
+INSERT INTO Student (Student_ID, Name, Department, Age, Email, Phone)
+VALUES 
+(1, 'Aditya', 'CSE', 20, 'adi@example.com', '9876543210'),
+(2, 'miya bhai', 'AI&DS', 19, 'miyaBhai@example.com', '9876501234'),
+(3, 'Aman don', 'Aids', 21, 'aman@example.com', '9876123456');
+
+INSERT INTO Course (Course_ID, Course_Name, Credits)
+VALUES 
+(101, 'DBMS', 4),
+(102, 'OOPS', 3),
+(103, 'AI', 4);
+
+INSERT INTO Enrollment (Student_ID, Course_ID, Grade)
+VALUES
+(1, 101, 'A'),
+(2, 102, 'B'),
+(3, 103, 'A');
+
+CREATE VIEW Student_View AS
+SELECT Name, Department, Age
+FROM Student
+WHERE Age > 18;
+
+SELECT * FROM Student;
+
+SELECT Name, Department FROM Student WHERE Age > 19;
+
+UPDATE Student
+SET Age = 22
+WHERE Student_ID = 3;
+
+DELETE FROM Student WHERE Student_ID = 2;
+
+TRUNCATE TABLE Enrollment;
+
+RENAME TABLE Student TO Students;
+
+DROP VIEW Student_View;
+
+DROP TABLE Course;
